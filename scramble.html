@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Scramble</title>
+</head>
+<body>
+    <h1>A JavaScript Word Scramble Game</h1>
+
+    <script>
+        var WORDS     = ["booger", "apple", "hackbright", "mango", "berry", "watermelon"];
+        var SCRAMBLED = ["oogreb", "papel", "backrhight", "goman", "yebrr", "nmeterlawo"];
+
+        var playing = true;
+
+        console.log("Hey, I'm writing JavaScript!");
+
+        //adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+        function getRandomInt(max) {
+         
+          return Math.floor(Math.random() * max);
+        }
+       
+        // end copy
+
+        // copied from https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+
+        function scramble(array) {
+            var counter = array.length;
+
+            while (counter > 0) {
+                var index = Math.floor(Math.random() * counter);
+
+                counter--;
+
+                var temp = array[array.length-1];
+                array[array.length-1] = array[index];
+                array[index] = temp;
+            
+                console.log(index);
+                console.log(counter);
+                console.log(array);
+               //onsole.log(Math.floor(Math.random() * counter));
+            }
+            return array
+        }
+
+        // end copy
+
+
+            
+        while (playing) {
+
+            // Grab a random word from the WORDS array.
+            var index = getRandomInt(WORDS.length);
+            var word = WORDS[index];
+            //console.log(word);
+            //console.log(getRandomInt(0, WORDS.length));
+
+
+            // Grab the corresponding scrambled word from the SCRAMBLED array.
+            var sw_listr=word.split("");
+            var scrambl_word = scramble(sw_listr);
+
+            // Prompt the user to guess the original word when given the scrambled word.
+            var unscramble_word = prompt("Please unscramble " + scrambl_word + "!");
+
+            // If the user guesses wrong, tell them they were wrong and show the right word.
+            if (unscramble_word.toLowerCase().trim() !== word) {
+                alert("You are wrong, the unscramble word is " + word + "!");
+            }
+            else {
+                alert("congratulation!");
+            }
+            
+            // If the user guesses the correct word, congratulate them.
+
+            playing = confirm("Press OK To keep playing or Cancel to quit");
+
+            // What does confirm() return?
+            // What does setting the playing variable do?
+        }
+
+        alert("goodbye!");
+
+
+    </script>
+    
+</body>
+</html>
